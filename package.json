@@ -1,11 +1,18 @@
 {
   "name": "@hexlet/code",
   "version": "1.0.0",
+  "type": "module",
   "description": "[![Actions Status](https://github.com/jstSashas/frontend-project-44/workflows/hexlet-check/badge.svg)](https://github.com/jstSashas/frontend-project-44/actions)",
+  "bin": {
+  "brain-games": "bin/brain-games.js"
+},
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "jst_sashas",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "makefile": "^0.0.2"
+  }
 }
