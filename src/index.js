@@ -7,18 +7,18 @@ const welcome = () => {
 
 const questAnsCompar = (task, rightAnswer) => {
   for (let i = 0; i < 3; i += 1) {
-    const task1 = task();
-    const rightAnswer1 = rightAnswer(task1);
-    const question = `Question: ${task1}`;
+    const taskNow = task();
+    const rightAnswerNow = rightAnswer(taskNow);
+    const question = `Question: ${taskNow}`;
     console.log(question);
     const userAnswer = readlineSync.question('Your answer: ');
-    if (userAnswer === rightAnswer1) {
+    if (userAnswer === rightAnswerNow) {
       console.log('Correct!');
       if (i === 2) {
         console.log(`Congratulations, ${userName}!`);
       }
     } else {
-      console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${rightAnswer1}'`);
+      console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${rightAnswerNow}'`);
       console.log(`Let's try again, ${userName}!`);
       break;
     }

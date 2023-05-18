@@ -18,9 +18,9 @@ const task = () => {
   return result;
 };
 
-const rightAnswer = (task1) => {
+const rightAnswer = (taskNow) => {
   let result;
-  const array = task1.split(' ');
+  const array = taskNow.split(' ');
   switch (array[1]) {
     case '+':
       result = Number(array[0]) + Number(array[2]);

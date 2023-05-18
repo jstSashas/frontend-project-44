@@ -9,6 +9,6 @@ console.log(condition);
 
 const task = () => Math.floor(Math.random() * (100 - 1 + 1)) + 1;
 
-const rightAnswer = (task1) => (task1 % 2 === 0 ? 'yes' : 'no');
+const rightAnswer = (taskNow) => (taskNow % 2 === 0 ? 'yes' : 'no');
 
 questAnsCompar(task, rightAnswer);
