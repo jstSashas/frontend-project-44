@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-// import readlineSync from 'readline-sync';
 import { welcome, questAnsCompar } from '../src/index.js';
 
 welcome();
