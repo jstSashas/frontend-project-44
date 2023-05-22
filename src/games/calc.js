@@ -1,38 +1,49 @@
-import { welcome, questAnsCompar } from '../index.js';
+import { runGameEngine } from '../index.js';
 
-const brainCalc = () => {
-  welcome();
-  const description = 'What is the result of the expression?';
-  console.log(description);
-  const task = () => {
-    const symbols = ['+', '-', '*'];
-    const getRandomIndex = () => Math.floor(Math.random() * symbols.length);
-    const getRandomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
-    const randomSymbol = symbols[getRandomIndex()];
-    const randomNumber1 = getRandomNumber(1, 100);
-    const randomNumber2 = getRandomNumber(1, 100);
-    const result = `${randomNumber1} ${randomSymbol} ${randomNumber2}`;
-    return result;
-  };
-  const rightAnswer = (taskNow) => {
-    let result;
-    const array = taskNow.split(' ');
-    switch (array[1]) {
-      case '+':
-        result = Number(array[0]) + Number(array[2]);
-        break;
-      case '-':
-        result = Number(array[0]) - Number(array[2]);
-        break;
-      case '*':
-        result = Number(array[0]) * Number(array[2]);
-        break;
-      default:
-        result = null;
-    }
-    return result.toString();
-  };
-  questAnsCompar(task, rightAnswer);
+const description = 'What is the result of the expression?';
+
+const mathOperators = ['+', '-', '*'];
+
+const getRandomMathOperator = () => mathOperators[Math.floor(Math.random() * mathOperators.length)];
+
+const getRandomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+
+const calculate = (number1, number2, operator) => {
+  switch (operator) {
+    case '+':
+      return number1 + number2;
+
+    case '-':
+      return number1 - number2;
+
+    case '*':
+      return number1 * number2;
+
+    default:
+      throw new Error('The mathematical operator is missing. The operator must be "+", "-" or "*".');
+  }
 };
 
-export default brainCalc;
+const MIN_NUM_VALUE = 1;
+const MAX_NUM_VALUE = 100;
+
+const generateRound = () => {
+  const randomMathOperator = getRandomMathOperator();
+  const randomNumber1 = getRandomNumber(MIN_NUM_VALUE, MAX_NUM_VALUE);
+  const randomNumber2 = getRandomNumber(MIN_NUM_VALUE, MAX_NUM_VALUE);
+  const question = `${randomNumber1} ${randomMathOperator} ${randomNumber2}`;
+
+  const rightAnswer = String(calculate(randomNumber1, randomNumber2, randomMathOperator));
+
+  return {
+    question,
+    rightAnswer,
+  };
+};
+
+// переименуй в runBrainCalc, так как это функция. а функция -- это действие, должен быть глагол
+const runBrainCalc = () => {
+  runGameEngine(description, generateRound);
+};
+
+export default runBrainCalc;
